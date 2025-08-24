@@ -28,7 +28,7 @@ export default function AboutPage() {
     description: "Empowering communities through humanitarian aid.",
   };
   return (
-    <main className="flex flex-col">
+    <main className="flex flex-col overflow-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
