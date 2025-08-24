@@ -175,7 +175,7 @@ const ContactFormSection: React.FC = () => {
                   aria-label="Your full name"
                   aria-required="true"
                   aria-describedby={errors.name ? "name-error" : undefined}
-                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 ${
+                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600 text-gray-700 focus:border-red-600 ${
                     errors.name ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter your full name"
@@ -204,7 +204,7 @@ const ContactFormSection: React.FC = () => {
                   aria-label="Your email address"
                   aria-required="true"
                   aria-describedby={errors.email ? "email-error" : undefined}
-                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 ${
+                  className={`w-full px-3 py-2 border rounded-md shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter your email address"
@@ -233,7 +233,7 @@ const ContactFormSection: React.FC = () => {
                   aria-label="Message subject"
                   aria-required="true"
                   aria-describedby={errors.subject ? "subject-error" : undefined}
-                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 ${
+                  className={`w-full px-3 py-2 border rounded-md shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 ${
                     errors.subject ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter the subject of your message"
@@ -262,7 +262,7 @@ const ContactFormSection: React.FC = () => {
                   aria-label="Your message"
                   aria-required="true"
                   aria-describedby={errors.message ? "message-error" : undefined}
-                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 resize-vertical ${
+                  className={`w-full px-3 py-2 border rounded-md shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 resize-vertical ${
                     errors.message ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter your message here..."
