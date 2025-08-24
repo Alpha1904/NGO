@@ -8,7 +8,7 @@ import VideoSection from "@/components/ProjectsDetails/Video";
 
 import { Metadata } from 'next';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Clean Water Initiative - NGO Aid',
     description: 'Learn about our clean water project in Africa.',
@@ -20,13 +20,13 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default function ProjectDetailPage({ params }: { params: { id: string } }) {
+export default function ProjectDetailPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Project",
     name: "Clean Water Initiative",
     description: "Providing clean water to rural communities.",
-    url: `https://your-site.com/projects/${params.id}`,
+    url: `https://your-site.com/projects/1`,
   };
 
   return (

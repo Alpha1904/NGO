@@ -128,7 +128,7 @@ const FundAllocationSection: React.FC = () => {
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Your donations directly support our mission to create lasting change 
-            in communities worldwide. Here's how every dollar makes a difference.
+            in communities worldwide. Here&apos;s how every dollar makes a difference.
           </p>
         </div>
 

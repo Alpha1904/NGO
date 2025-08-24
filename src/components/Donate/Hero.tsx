@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import Head from 'next/head';
 
 interface DonateContent {
   headline: string;
@@ -11,7 +10,7 @@ interface DonateContent {
 }
 
 const DonateHeroSection: React.FC = () => {
-  const [content, setContent] = useState<DonateContent>({
+  const [content] = useState<DonateContent>({
     headline: 'Make a Difference Today',
     description: 'Your donation empowers communities and saves lives. Join us in creating lasting change.',
     imageUrl: 'https://unsplash.com/photos/donation-impact.jpg',
@@ -42,6 +41,7 @@ const DonateHeroSection: React.FC = () => {
 
   // Intersection Observer for fade-in animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -55,13 +55,13 @@ const DonateHeroSection: React.FC = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -76,21 +76,15 @@ const DonateHeroSection: React.FC = () => {
       "@type": "NGO",
       "name": "Humanitarian NGO"
     },
-    "url": typeof window !== 'undefined' ? window.location.href : ''
+    "url": 'https://your-site.com/donate'
   };
 
   return (
     <>
-      <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-        />
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" 
-          rel="stylesheet" 
-        />
-      </Head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
       
       <section
         ref={sectionRef}
@@ -99,7 +93,6 @@ const DonateHeroSection: React.FC = () => {
         }`}
         aria-label="Donation hero section"
         role="banner"
-        style={{ fontFamily: 'Roboto, sans-serif' }}
       >
         {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0">

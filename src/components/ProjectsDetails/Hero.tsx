@@ -19,7 +19,7 @@ interface ProjectHeroSectionProps {
 }
 
 const ProjectHeroSection: React.FC<ProjectHeroSectionProps> = ({ projectId }) => {
-  const [project, setProject] = useState<ProjectData>({
+  const [project] = useState<ProjectData>({
     id: 'water-initiative-africa',
     title: 'Clean Water Initiative in Africa',
     description: 'Providing clean water to rural communities since 2023.',

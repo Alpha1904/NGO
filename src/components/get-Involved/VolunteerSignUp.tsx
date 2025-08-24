@@ -31,6 +31,7 @@ const VolunteerSignUpSection: React.FC = () => {
 
   // Intersection Observer for fade-in animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -40,13 +41,13 @@ const VolunteerSignUpSection: React.FC = () => {
       { threshold: 0.1, rootMargin: '50px' }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -331,4 +332,4 @@ const VolunteerSignUpSection: React.FC = () => {
   );
 };
 
-export default VolunteerSignUpSection;
+export default VolunteerSignUpSection; 

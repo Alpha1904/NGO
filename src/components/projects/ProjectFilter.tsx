@@ -21,7 +21,7 @@ const ProjectFiltersSection: React.FC = () => {
   });
 
   // Placeholder filter options (later to be fetched from Strapi CMS)
-  const [locationOptions, setLocationOptions] = useState<FilterOption[]>([
+  const [locationOptions] = useState<FilterOption[]>([
     { value: 'all', label: 'All' },
     { value: 'africa', label: 'Africa' },
     { value: 'asia', label: 'Asia' },
@@ -29,7 +29,7 @@ const ProjectFiltersSection: React.FC = () => {
     { value: 'americas', label: 'Americas' },
   ]);
 
-  const [statusOptions, setStatusOptions] = useState<FilterOption[]>([
+  const [statusOptions] = useState<FilterOption[]>([
     { value: 'all', label: 'All' },
     { value: 'active', label: 'Active' },
     { value: 'completed', label: 'Completed' },
@@ -39,21 +39,12 @@ const ProjectFiltersSection: React.FC = () => {
   // Future implementation: Fetch filter options from Strapi CMS
   useEffect(() => {
     // TODO: Replace with actual API calls to Strapi CMS
-    const fetchFilterOptions = async () => {
-      try {
-        // const locationResponse = await fetch('/api/filters/locations');
-        // const statusResponse = await fetch('/api/filters/statuses');
-        // const locations = await locationResponse.json();
-        // const statuses = await statusResponse.json();
-        // setLocationOptions(locations);
-        // setStatusOptions(statuses);
-      } catch (error) {
-        console.error('Failed to fetch filter options:', error);
-      }
-    };
-
-    // Uncomment when API is ready
-    // fetchFilterOptions();
+    // const locationResponse = await fetch('/api/filters/locations');
+    // const statusResponse = await fetch('/api/filters/statuses');
+    // const locations = await locationResponse.json();
+    // const statuses = await statusResponse.json();
+    // setLocationOptions(locations);
+    // setStatusOptions(statuses);
   }, []);
 
   // Handle filter changes

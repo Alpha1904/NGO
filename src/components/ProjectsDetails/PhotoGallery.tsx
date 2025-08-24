@@ -19,36 +19,9 @@ const PhotoGallerySection: React.FC<PhotoGallerySectionProps> = ({ projectId }) 
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Placeholder images for now
-  const placeholderImages: GalleryImage[] = [
-    {
-      id: 1,
-      url: 'https://unsplash.com/photos/project-gallery1.jpg',
-      alt: 'Humanitarian aid distribution in local community',
-      caption: 'Community aid distribution'
-    },
-    {
-      id: 2,
-      url: 'https://unsplash.com/photos/project-gallery2.jpg',
-      alt: 'Volunteers working together on humanitarian project',
-      caption: 'Volunteer collaboration'
-    },
-    {
-      id: 3,
-      url: 'https://unsplash.com/photos/project-gallery3.jpg',
-      alt: 'Children benefiting from humanitarian programs',
-      caption: 'Children programs impact'
-    },
-    {
-      id: 4,
-      url: 'https://unsplash.com/photos/project-gallery4.jpg',
-      alt: 'Healthcare services provided by humanitarian mission',
-      caption: 'Healthcare outreach'
-    }
-  ];
-
   // Intersection Observer for fade-in animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -62,19 +35,47 @@ const PhotoGallerySection: React.FC<PhotoGallerySectionProps> = ({ projectId }) 
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
 
   // Fetch images from Strapi CMS (placeholder for future implementation)
   useEffect(() => {
+    // Placeholder images for now
+    const placeholderImages: GalleryImage[] = [
+      {
+        id: 1,
+        url: 'https://unsplash.com/photos/project-gallery1.jpg',
+        alt: 'Humanitarian aid distribution in local community',
+        caption: 'Community aid distribution'
+      },
+      {
+        id: 2,
+        url: 'https://unsplash.com/photos/project-gallery2.jpg',
+        alt: 'Volunteers working together on humanitarian project',
+        caption: 'Volunteer collaboration'
+      },
+      {
+        id: 3,
+        url: 'https://unsplash.com/photos/project-gallery3.jpg',
+        alt: 'Children benefiting from humanitarian programs',
+        caption: 'Children programs impact'
+      },
+      {
+        id: 4,
+        url: 'https://unsplash.com/photos/project-gallery4.jpg',
+        alt: 'Healthcare services provided by humanitarian mission',
+        caption: 'Healthcare outreach'
+      }
+    ];
+
     const fetchGalleryImages = async () => {
       if (projectId) {
         try {

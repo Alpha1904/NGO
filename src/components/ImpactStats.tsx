@@ -12,7 +12,7 @@ interface StatData {
 }
 
 const ImpactStatsSection: React.FC = () => {
-  const [stats, setStats] = useState<StatData[]>([
+  const [stats] = useState<StatData[]>([
     { id: 'people-helped', value: 10000, label: 'People Helped' },
     { id: 'active-projects', value: 50, label: 'Active Projects' },
     { id: 'donations-raised', value: 1000000, label: 'Donations Raised', prefix: '$' }
@@ -24,6 +24,7 @@ const ImpactStatsSection: React.FC = () => {
 
   // Intersection Observer for scroll-triggered animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
@@ -37,13 +38,13 @@ const ImpactStatsSection: React.FC = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [hasAnimated]);
@@ -51,20 +52,12 @@ const ImpactStatsSection: React.FC = () => {
   // Placeholder for future Strapi API integration
   useEffect(() => {
     // TODO: Replace with actual Strapi API call
-    const fetchStatsFromStrapi = async () => {
-      try {
-        // const response = await fetch('/api/impact-stats');
-        // const data = await response.json();
-        // setStats(data);
-        
-        // For now, using placeholder data
-        console.log('Future Strapi API integration point');
-      } catch (error) {
-        console.error('Error fetching stats:', error);
-      }
-    };
-
-    // fetchStatsFromStrapi();
+    // const response = await fetch('/api/impact-stats');
+    // const data = await response.json();
+    // setStats(data);
+    
+    // For now, using placeholder data
+    console.log('Future Strapi API integration point');
   }, []);
 
   const formatNumber = (value: number, prefix?: string, suffix?: string): string => {
@@ -94,7 +87,7 @@ const ImpactStatsSection: React.FC = () => {
             Our Impact
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Together, we're making a difference in communities around the world. 
+            Together, we&apos;re making a difference in communities around the world. 
             See the real-time impact of your support.
           </p>
         </div>

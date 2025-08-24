@@ -1,6 +1,5 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
 
 interface Campaign {
   id: string;
@@ -12,40 +11,40 @@ interface Campaign {
   endDate: string;
 }
 
+// Placeholder data - moved outside the component to prevent re-creation on every render.
+const placeholderCampaigns: Campaign[] = [
+  {
+    id: '1',
+    name: 'Clean Water Project',
+    goal: 50000,
+    raised: 30000,
+    description: 'Providing clean water access to rural communities',
+    startDate: '2024-01-01',
+    endDate: '2024-12-31'
+  },
+  {
+    id: '2',
+    name: 'Emergency Food Relief',
+    goal: 75000,
+    raised: 45000,
+    description: 'Emergency food assistance for displaced families',
+    startDate: '2024-02-15',
+    endDate: '2024-08-15'
+  },
+  {
+    id: '3',
+    name: 'Education Support Program',
+    goal: 25000,
+    raised: 22000,
+    description: 'Supporting education for underprivileged children',
+    startDate: '2024-03-01',
+    endDate: '2024-11-30'
+  }
+];
+
 const CampaignProgressSection: React.FC = () => {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  // Placeholder data - will be replaced with Strapi CMS fetch
-  const placeholderCampaigns: Campaign[] = [
-    {
-      id: '1',
-      name: 'Clean Water Project',
-      goal: 50000,
-      raised: 30000,
-      description: 'Providing clean water access to rural communities',
-      startDate: '2024-01-01',
-      endDate: '2024-12-31'
-    },
-    {
-      id: '2',
-      name: 'Emergency Food Relief',
-      goal: 75000,
-      raised: 45000,
-      description: 'Emergency food assistance for displaced families',
-      startDate: '2024-02-15',
-      endDate: '2024-08-15'
-    },
-    {
-      id: '3',
-      name: 'Education Support Program',
-      goal: 25000,
-      raised: 22000,
-      description: 'Supporting education for underprivileged children',
-      startDate: '2024-03-01',
-      endDate: '2024-11-30'
-    }
-  ];
 
   useEffect(() => {
     // TODO: Replace with actual Strapi CMS API call
@@ -64,7 +63,8 @@ const CampaignProgressSection: React.FC = () => {
     setCampaigns(placeholderCampaigns);
     
     // Trigger animation after component mounts
-    setTimeout(() => setIsLoaded(true), 100);
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
   }, []);
 
   const calculatePercentage = (raised: number, goal: number): number => {
@@ -107,22 +107,13 @@ const CampaignProgressSection: React.FC = () => {
 
   return (
     <>
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" 
-          rel="stylesheet" 
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-        />
-      </Head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
 
       <section 
         className="bg-white py-16"
-        style={{ fontFamily: 'Roboto, sans-serif' }}
         aria-labelledby="campaigns-heading"
       >
         <div className="max-w-4xl mx-auto px-4">
@@ -211,7 +202,7 @@ const CampaignProgressSection: React.FC = () => {
           
           <div className="text-center mt-12">
             <p className="text-base text-gray-600 mb-4">
-              Every donation makes a difference in someone's life.
+              Every donation makes a difference in someone&apos;s life.
             </p>
             <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
               Donate Now

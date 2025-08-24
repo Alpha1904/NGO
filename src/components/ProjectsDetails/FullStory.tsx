@@ -15,7 +15,7 @@ interface FullStorySectionProps {
 }
 
 const FullStorySection: React.FC<FullStorySectionProps> = ({ projectId }) => {
-  const [story, setStory] = useState<StoryData>({
+  const [story] = useState<StoryData>({
     headline: 'Our Story',
     content: `This project began in 2023 to address water scarcity in remote communities across sub-Saharan Africa. What started as a small initiative to install solar-powered water pumps in three villages has grown into a comprehensive program reaching over 50,000 people.
 
@@ -32,6 +32,7 @@ Moving forward, we're expanding our approach to include water storage solutions,
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -45,13 +46,13 @@ Moving forward, we're expanding our approach to include water storage solutions,
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 
 interface NavLink {
   href: string
@@ -31,23 +30,29 @@ export default function Navbar() {
 
   // Handle scroll effect for shadow
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
+    // Only run on the client side
+    if (typeof window !== 'undefined') {
+      const handleScroll = () => {
+        setIsScrolled(window.scrollY > 10)
+      }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+      window.addEventListener('scroll', handleScroll)
+      return () => window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   // Close mobile menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = () => {
-      setIsMobileMenuOpen(false)
-    }
+    // Only run on the client side
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      const handleClickOutside = () => {
+        setIsMobileMenuOpen(false)
+      }
 
-    if (isMobileMenuOpen) {
-      document.addEventListener('click', handleClickOutside)
-      return () => document.removeEventListener('click', handleClickOutside)
+      if (isMobileMenuOpen) {
+        document.addEventListener('click', handleClickOutside)
+        return () => document.removeEventListener('click', handleClickOutside)
+      }
     }
   }, [isMobileMenuOpen])
 

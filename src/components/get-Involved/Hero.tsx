@@ -10,7 +10,7 @@ interface HeroContent {
 }
 
 const GetInvolvedHeroSection: React.FC = () => {
-  const [content, setContent] = useState<HeroContent>({
+  const [content] = useState<HeroContent>({
     headline: 'Join Our Mission',
     paragraph: 'Get involved through events or volunteering to make a global impact.',
     backgroundImage: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=400&q=80'
@@ -20,6 +20,7 @@ const GetInvolvedHeroSection: React.FC = () => {
 
   // Intersection Observer for fade-in animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -32,13 +33,13 @@ const GetInvolvedHeroSection: React.FC = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);

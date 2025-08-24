@@ -16,27 +16,27 @@ const AnnualReportsSection: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Placeholder data - replace with actual API call to Strapi CMS
-  const placeholderReports: Report[] = [
-    {
-      id: '1',
-      title: '2024 Annual Report',
-      year: '2024',
-      description: 'See how we made a difference in 2024, reaching thousands of lives across our humanitarian programs.',
-      pdfUrl: '/pdfs/report-2024.pdf',
-      publishedDate: '2024-12-31'
-    },
-    {
-      id: '2',
-      title: '2023 Annual Report',
-      year: '2023',
-      description: 'Discover our achievements and impact throughout 2023, building stronger communities together.',
-      pdfUrl: '/pdfs/report-2023.pdf',
-      publishedDate: '2023-12-31'
-    }
-  ];
-
   useEffect(() => {
+    // Placeholder data - replace with actual API call to Strapi CMS
+    const placeholderReports: Report[] = [
+      {
+        id: '1',
+        title: '2024 Annual Report',
+        year: '2024',
+        description: 'See how we made a difference in 2024, reaching thousands of lives across our humanitarian programs.',
+        pdfUrl: '/pdfs/report-2024.pdf',
+        publishedDate: '2024-12-31'
+      },
+      {
+        id: '2',
+        title: '2023 Annual Report',
+        year: '2023',
+        description: 'Discover our achievements and impact throughout 2023, building stronger communities together.',
+        pdfUrl: '/pdfs/report-2023.pdf',
+        publishedDate: '2023-12-31'
+      }
+    ];
+
     const fetchReports = async () => {
       try {
         setLoading(true);

@@ -18,31 +18,38 @@ const SocialShareSection: React.FC<SocialShareSectionProps> = ({
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Set current URL on client side
-    setCurrentUrl(window.location.href);
-
-    // Intersection Observer for fade-in animation
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      {
-        threshold: 0.2,
-        rootMargin: '0px 0px -50px 0px'
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    // Set current URL on client side - only if window is available
+    if (typeof window !== 'undefined') {
+      setCurrentUrl(window.location.href);
     }
 
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+    // Intersection Observer for fade-in animation
+    const currentRef = sectionRef.current;
+    
+    // Only run on client side
+    if (typeof window !== 'undefined' && typeof IntersectionObserver !== 'undefined') {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        },
+        {
+          threshold: 0.2,
+          rootMargin: '0px 0px -50px 0px'
+        }
+      );
+
+      if (currentRef) {
+        observer.observe(currentRef);
       }
-    };
+
+      return () => {
+        if (currentRef) {
+          observer.unobserve(currentRef);
+        }
+      };
+    }
   }, []);
 
   const shareText = `${projectTitle} - ${projectDescription}`;

@@ -17,35 +17,35 @@ const StoryHighlightsSection = () => {
   const [stories, setStories] = useState<Story[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Placeholder stories for fallback
-  const placeholderStories: Story[] = [
-    {
-      id: 1,
-      title: 'Rebuilding After Disaster',
-      description: 'After the devastating earthquake, Maria\'s community came together to rebuild their school. With your support, 200 children now have a safe place to learn and grow.',
-      imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=300&fit=crop&crop=center',
-      donationLink: '/donate/disaster-relief',
-      altText: 'Children playing in a newly rebuilt school courtyard'
-    },
-    {
-      id: 2,
-      title: 'Clean Water for All',
-      description: 'Ahmed\'s village now has access to clean drinking water thanks to a new well system. This life-changing project has reduced waterborne diseases by 90% in the community.',
-      imageUrl: 'https://smileindiatrust.org/wp-content/uploads/2022/06/15.jpg',
-      donationLink: '/donate/clean-water',
-      altText: 'Community members gathering around a new water well'
-    },
-    {
-      id: 3,
-      title: 'Education Changes Lives',
-      description: 'Young Fatima is the first in her family to learn to read and write. Our literacy program has empowered over 500 women and girls in rural communities.',
-      imageUrl: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop&crop=center',
-      donationLink: '/donate/education',
-      altText: 'A young girl reading a book in a classroom setting'
-    }
-  ];
-
   useEffect(() => {
+    // Placeholder stories for fallback
+    const placeholderStories: Story[] = [
+      {
+        id: 1,
+        title: 'Rebuilding After Disaster',
+        description: 'After the devastating earthquake, Maria\'s community came together to rebuild their school. With your support, 200 children now have a safe place to learn and grow.',
+        imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=300&fit=crop&crop=center',
+        donationLink: '/donate/disaster-relief',
+        altText: 'Children playing in a newly rebuilt school courtyard'
+      },
+      {
+        id: 2,
+        title: 'Clean Water for All',
+        description: 'Ahmed\'s village now has access to clean drinking water thanks to a new well system. This life-changing project has reduced waterborne diseases by 90% in the community.',
+        imageUrl: 'https://smileindiatrust.org/wp-content/uploads/2022/06/15.jpg',
+        donationLink: '/donate/clean-water',
+        altText: 'Community members gathering around a new water well'
+      },
+      {
+        id: 3,
+        title: 'Education Changes Lives',
+        description: 'Young Fatima is the first in her family to learn to read and write. Our literacy program has empowered over 500 women and girls in rural communities.',
+        imageUrl: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop&crop=center',
+        donationLink: '/donate/education',
+        altText: 'A young girl reading a book in a classroom setting'
+      }
+    ];
+
     const fetchStories = async () => {
       try {
         setLoading(true);

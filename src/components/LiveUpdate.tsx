@@ -19,57 +19,57 @@ const LiveUpdatesSection: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Mock data for MVP - replace with API call later
-  const mockUpdates: Update[] = [
-    {
-      id: '1',
-      title: 'Emergency Relief Reaches Remote Villages in Crisis Zone',
-      date: '2024-08-20',
-      excerpt: 'Our emergency response team successfully delivered essential supplies to 15 remote villages affected by recent flooding, providing immediate relief to over 3,000 families.',
-      image: '/images/emergency-relief.jpg',
-      slug: 'emergency-relief-remote-villages',
-      type: 'article'
-    },
-    {
-      id: '2',
-      title: 'New School Opens in Refugee Camp',
-      date: '2024-08-18',
-      excerpt: 'Thanks to generous donors, we opened our 50th educational facility, providing hope and learning opportunities for 500 refugee children.',
-      image: '/images/school-opening.jpg',
-      slug: 'new-school-refugee-camp',
-      type: 'article'
-    },
-    {
-      id: '3',
-      title: 'Clean Water Initiative Milestone Reached',
-      date: '2024-08-15',
-      excerpt: 'Our water sanitation project has now provided clean drinking water access to over 100,000 people across 25 communities in the region.',
-      image: '/images/water-initiative.jpg',
-      slug: 'clean-water-milestone',
-      type: 'article'
-    },
-    {
-      id: '4',
-      title: 'Medical Team Provides Critical Healthcare',
-      date: '2024-08-12',
-      excerpt: 'Our mobile medical units treated over 800 patients this week, providing essential healthcare services in areas with limited medical infrastructure.',
-      image: '/images/medical-team.jpg',
-      slug: 'medical-team-healthcare',
-      type: 'article'
-    },
-    {
-      id: '5',
-      title: 'Community Volunteers Make a Difference',
-      date: '2024-08-10',
-      excerpt: 'Local volunteers joined our food distribution program, helping us reach 50% more families in need while strengthening community bonds.',
-      image: '/images/volunteers.jpg',
-      slug: 'community-volunteers',
-      type: 'social',
-      socialEmbed: 'Amazing to see the community come together! 💪 #HumanitarianWork #CommunitySupport #MakeADifference'
-    }
-  ];
-
   useEffect(() => {
+    // Mock data for MVP - replace with API call later
+    const mockUpdates: Update[] = [
+      {
+        id: '1',
+        title: 'Emergency Relief Reaches Remote Villages in Crisis Zone',
+        date: '2024-08-20',
+        excerpt: 'Our emergency response team successfully delivered essential supplies to 15 remote villages affected by recent flooding, providing immediate relief to over 3,000 families.',
+        image: '/images/emergency-relief.jpg',
+        slug: 'emergency-relief-remote-villages',
+        type: 'article'
+      },
+      {
+        id: '2',
+        title: 'New School Opens in Refugee Camp',
+        date: '2024-08-18',
+        excerpt: 'Thanks to generous donors, we opened our 50th educational facility, providing hope and learning opportunities for 500 refugee children.',
+        image: '/images/school-opening.jpg',
+        slug: 'new-school-refugee-camp',
+        type: 'article'
+      },
+      {
+        id: '3',
+        title: 'Clean Water Initiative Milestone Reached',
+        date: '2024-08-15',
+        excerpt: 'Our water sanitation project has now provided clean drinking water access to over 100,000 people across 25 communities in the region.',
+        image: '/images/water-initiative.jpg',
+        slug: 'clean-water-milestone',
+        type: 'article'
+      },
+      {
+        id: '4',
+        title: 'Medical Team Provides Critical Healthcare',
+        date: '2024-08-12',
+        excerpt: 'Our mobile medical units treated over 800 patients this week, providing essential healthcare services in areas with limited medical infrastructure.',
+        image: '/images/medical-team.jpg',
+        slug: 'medical-team-healthcare',
+        type: 'article'
+      },
+      {
+        id: '5',
+        title: 'Community Volunteers Make a Difference',
+        date: '2024-08-10',
+        excerpt: 'Local volunteers joined our food distribution program, helping us reach 50% more families in need while strengthening community bonds.',
+        image: '/images/volunteers.jpg',
+        slug: 'community-volunteers',
+        type: 'social',
+        socialEmbed: 'Amazing to see the community come together! 💪 #HumanitarianWork #CommunitySupport #MakeADifference'
+      }
+    ];
+
     const fetchUpdates = async () => {
       try {
         setLoading(true);
@@ -179,7 +179,7 @@ const LiveUpdatesSection: React.FC = () => {
                 {update.type === 'social' && update.socialEmbed && (
                   <div className="bg-red-50 border-l-4 border-red-400 p-3 mb-4 rounded">
                     <p className="text-sm text-red-800 italic">
-                      "{update.socialEmbed}"
+                      &quot;{update.socialEmbed}&quot;
                     </p>
                   </div>
                 )}

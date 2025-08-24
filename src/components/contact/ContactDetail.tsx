@@ -15,7 +15,7 @@ interface ContactData {
 }
 
 const ContactDetailsSection: React.FC = () => {
-  const [contactData, setContactData] = useState<ContactData>({
+  const [contactData] = useState<ContactData>({
     headline: 'Our Contact Information',
     details: [
       {
@@ -43,6 +43,7 @@ const ContactDetailsSection: React.FC = () => {
 
   // Intersection Observer for fade-in animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -55,35 +56,25 @@ const ContactDetailsSection: React.FC = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
 
   // Fetch contact details from Strapi CMS
   useEffect(() => {
-    const fetchContactDetails = async () => {
-      try {
-        // TODO: Replace with actual Strapi API endpoint
-        const response = await fetch('/api/contact-details');
-        if (response.ok) {
-          const data = await response.json();
-          setContactData(data);
-        }
-      } catch (error) {
-        console.error('Failed to fetch contact details:', error);
-        // Keep placeholder data on error
-      }
-    };
-
-    // Uncomment when Strapi API is ready
-    // fetchContactDetails();
+    // TODO: Replace with actual Strapi API endpoint
+    // const response = await fetch('/api/contact-details');
+    // if (response.ok) {
+    //   const data = await response.json();
+    //   setContactData(data);
+    // }
   }, []);
 
   const getIcon = (type: string) => {

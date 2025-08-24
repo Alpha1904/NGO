@@ -159,7 +159,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, isOpen, onClose }) => {
 };
 
 const EventsCalendarSection: React.FC = () => {
-  const [events, setEvents] = useState<Event[]>(placeholderEvents);
+  const [events] = useState<Event[]>(placeholderEvents);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -167,6 +167,7 @@ const EventsCalendarSection: React.FC = () => {
 
   // Intersection Observer for fade-in animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -176,13 +177,13 @@ const EventsCalendarSection: React.FC = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);

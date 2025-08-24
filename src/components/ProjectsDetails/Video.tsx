@@ -2,24 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 
-// Simple type declaration for ReactPlayer
-declare const ReactPlayer: React.ComponentType<{
-  url: string;
-  width?: string | number;
-  height?: string | number;
-  controls?: boolean;
-  light?: boolean | string;
-  playing?: boolean;
-  pip?: boolean;
-  stopOnUnmount?: boolean;
-  config?: any;
-  className?: string;
-  style?: React.CSSProperties;
-  onError?: (error: any) => void;
-  onReady?: () => void;
-  [key: string]: any;
-}>;
-
 // Dynamic import for ReactPlayer to avoid SSR issues
 const ReactPlayerComponent = React.lazy(() => import('react-player'));
 
@@ -48,6 +30,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({ projectId }) => {
 
   // Intersection Observer for fade-in animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -60,13 +43,13 @@ const VideoSection: React.FC<VideoSectionProps> = ({ projectId }) => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -116,7 +99,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({ projectId }) => {
     publisher: {
       '@type': 'Organization',
       name: 'Humanitarian NGO',
-      url: typeof window !== 'undefined' ? window.location.origin : '',
+      url: 'https://your-site.com',
     },
   };
 
@@ -204,29 +187,31 @@ const VideoSection: React.FC<VideoSectionProps> = ({ projectId }) => {
                 }
               >
                 <ReactPlayerComponent
-                  url={videoData.url}
-                  width="100%"
-                  height="100%"
-                  controls
-                  light={videoData.thumbnailUrl || true}
-                  playing={false}
-                  pip
-                  stopOnUnmount={false}
-                  config={{
-                    youtube: {
-                      rel: 0,
-                      cc_load_policy: 1,
+                  {...{
+                    url: videoData.url,
+                    width: "100%",
+                    height: "100%",
+                    controls: true,
+                    light: videoData.thumbnailUrl || true,
+                    playing: false,
+                    pip: true,
+                    stopOnUnmount: false,
+                    config: {
+                      youtube: {
+                        rel: 0,
+                        cc_load_policy: 1,
+                      },
+                      vimeo: {
+                        byline: false,
+                        portrait: false,
+                        title: false,
+                      },
                     },
-                    vimeo: {
-                      byline: false,
-                      portrait: false,
-                      title: false,
-                    },
-                  }}
-                  className="absolute top-0 left-0"
-                  onError={handleVideoError}
-                  onReady={handleVideoReady}
-                  style={{ pointerEvents: 'auto' }}
+                    className: "absolute top-0 left-0",
+                    onError: handleVideoError,
+                    onReady: handleVideoReady,
+                    style: { pointerEvents: 'auto' }
+                  } as any}
                 />
               </React.Suspense>
             </div>

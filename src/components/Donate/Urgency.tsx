@@ -24,22 +24,9 @@ const UrgencyIndicatorsSection = () => {
   const [isLoading, setIsLoading] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Placeholder data - will be replaced with Strapi CMS data
-  const placeholderAppeals: Appeal[] = [
-    {
-      id: '1',
-      title: 'Emergency Relief Fund ends in',
-      endDate: Date.now() + 3 * 24 * 60 * 60 * 1000 + 12 * 60 * 60 * 1000 + 45 * 60 * 1000 + 30 * 1000, // 3d 12h 45m 30s
-    },
-    {
-      id: '2',
-      title: 'Critical Medical Supplies ends in',
-      endDate: Date.now() + 7 * 24 * 60 * 60 * 1000 + 8 * 60 * 60 * 1000 + 22 * 60 * 1000 + 15 * 1000, // 7d 8h 22m 15s
-    },
-  ];
-
   // IntersectionObserver for fade-in animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -53,19 +40,33 @@ const UrgencyIndicatorsSection = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
 
   // Fetch appeals from Strapi CMS
   useEffect(() => {
+    // Placeholder data - will be replaced with Strapi CMS data
+    const placeholderAppeals: Appeal[] = [
+      {
+        id: '1',
+        title: 'Emergency Relief Fund ends in',
+        endDate: Date.now() + 3 * 24 * 60 * 60 * 1000 + 12 * 60 * 60 * 1000 + 45 * 60 * 1000 + 30 * 1000, // 3d 12h 45m 30s
+      },
+      {
+        id: '2',
+        title: 'Critical Medical Supplies ends in',
+        endDate: Date.now() + 7 * 24 * 60 * 60 * 1000 + 8 * 60 * 60 * 1000 + 22 * 60 * 1000 + 15 * 1000, // 7d 8h 22m 15s
+      },
+    ];
+
     const fetchAppeals = async () => {
       try {
         setIsLoading(true);
@@ -137,7 +138,6 @@ const UrgencyIndicatorsSection = () => {
         className={`bg-gray-100 py-16 transition-opacity duration-1000 ease-in-out ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
-        style={{ fontFamily: 'Roboto, sans-serif' }}
       >
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">

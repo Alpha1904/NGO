@@ -10,7 +10,7 @@ interface ProjectsIntroData {
 }
 
 const ProjectsHeroSection: React.FC = () => {
-  const [data, setData] = useState<ProjectsIntroData>({
+  const [data] = useState<ProjectsIntroData>({
     headline: 'Our Global Projects',
     description: 'Discover our initiatives transforming lives worldwide through sustainable aid and crisis relief.',
     backgroundImage: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&h=400&fit=crop&crop=center'

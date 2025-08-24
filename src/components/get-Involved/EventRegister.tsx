@@ -132,7 +132,7 @@ const EventRegistrationSection = () => {
             "description": "Register for humanitarian events and volunteer opportunities",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": (typeof window !== 'undefined' && window.location?.href) || "",
+              "urlTemplate": "https://your-site.com/events/register",
               "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
             },
             "result": {

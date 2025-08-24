@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
 // Dynamically import Slider to avoid SSR issues
 const Slider = dynamic(() => import('react-slick'), {
@@ -21,42 +22,42 @@ const PartnerLogosSection: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [mounted, setMounted] = useState<boolean>(false);
 
-  // Placeholder data - will be replaced by Strapi CMS data
-  const placeholderPartners: Partner[] = [
-    {
-      id: 1,
-      name: 'Partner 1',
-      logo: 'https://via.placeholder.com/150x50/CCCCCC/666666?text=Partner+1',
-      website: 'https://partner1.org'
-    },
-    {
-      id: 2,
-      name: 'Partner 2',
-      logo: 'https://via.placeholder.com/150x50/CCCCCC/666666?text=Partner+2',
-      website: 'https://partner2.org'
-    },
-    {
-      id: 3,
-      name: 'Partner 3',
-      logo: 'https://via.placeholder.com/150x50/CCCCCC/666666?text=Partner+3',
-      website: 'https://partner3.org'
-    },
-    {
-      id: 4,
-      name: 'Partner 4',
-      logo: 'https://via.placeholder.com/150x50/CCCCCC/666666?text=Partner+4',
-      website: 'https://partner4.org'
-    },
-    {
-      id: 5,
-      name: 'Partner 5',
-      logo: 'https://via.placeholder.com/150x50/CCCCCC/666666?text=Partner+5',
-      website: 'https://partner5.org'
-    }
-  ];
-
   useEffect(() => {
     setMounted(true);
+    
+    // Placeholder data - will be replaced by Strapi CMS data
+    const placeholderPartners: Partner[] = [
+      {
+        id: 1,
+        name: 'Partner 1',
+        logo: 'https://via.placeholder.com/150x50/CCCCCC/666666?text=Partner+1',
+        website: 'https://partner1.org'
+      },
+      {
+        id: 2,
+        name: 'Partner 2',
+        logo: 'https://via.placeholder.com/150x50/CCCCCC/666666?text=Partner+2',
+        website: 'https://partner2.org'
+      },
+      {
+        id: 3,
+        name: 'Partner 3',
+        logo: 'https://via.placeholder.com/150x50/CCCCCC/666666?text=Partner+3',
+        website: 'https://partner3.org'
+      },
+      {
+        id: 4,
+        name: 'Partner 4',
+        logo: 'https://via.placeholder.com/150x50/CCCCCC/666666?text=Partner+4',
+        website: 'https://partner4.org'
+      },
+      {
+        id: 5,
+        name: 'Partner 5',
+        logo: 'https://via.placeholder.com/150x50/CCCCCC/666666?text=Partner+5',
+        website: 'https://partner5.org'
+      }
+    ];
     
     const fetchPartners = async () => {
       try {
@@ -163,45 +164,6 @@ const PartnerLogosSection: React.FC = () => {
     );
   }
 
-  // Fallback to simple grid if slider fails
-  const renderSimpleGrid = () => (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-      {partners.map((partner) => (
-        <div key={partner.id} className="flex justify-center items-center">
-          <div className="bg-gray-50 rounded-lg p-4 h-24 w-full flex items-center justify-center transition-all duration-300 hover:bg-gray-100 hover:shadow-md">
-            {partner.website ? (
-              <a
-                href={partner.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 rounded"
-                aria-label={`Visit ${partner.name} website`}
-              >
-                <img
-                  src={partner.logo}
-                  alt={`${partner.name} logo`}
-                  width={150}
-                  height={50}
-                  loading="lazy"
-                  className="max-h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                />
-              </a>
-            ) : (
-              <img
-                src={partner.logo}
-                alt={`${partner.name} logo`}
-                width={150}
-                height={50}
-                loading="lazy"
-                className="max-h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-              />
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-
   return (
     <>
       {generateStructuredData()}
@@ -231,24 +193,28 @@ const PartnerLogosSection: React.FC = () => {
                           className="block focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 rounded"
                           aria-label={`Visit ${partner.name} website`}
                         >
-                          <img
-                            src={partner.logo}
-                            alt={`${partner.name} logo`}
-                            width={150}
-                            height={50}
-                            loading="lazy"
-                            className="max-h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                          />
+                          <div className="relative w-[150px] h-[50px]">
+                            <Image
+                              src={partner.logo}
+                              alt={`${partner.name} logo`}
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                              priority={false}
+                            />
+                          </div>
                         </a>
                       ) : (
-                        <img
-                          src={partner.logo}
-                          alt={`${partner.name} logo`}
-                          width={150}
-                          height={50}
-                          loading="lazy"
-                          className="max-h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                        />
+                        <div className="relative w-[150px] h-[50px]">
+                          <Image
+                            src={partner.logo}
+                            alt={`${partner.name} logo`}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                            priority={false}
+                          />
+                        </div>
                       )}
                     </div>
                   </div>

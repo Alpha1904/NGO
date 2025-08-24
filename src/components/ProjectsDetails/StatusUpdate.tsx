@@ -19,31 +19,6 @@ const StatusUpdatesSection: React.FC<StatusUpdatesSectionProps> = ({ projectId }
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Placeholder data - will be replaced with API call
-  const placeholderUpdates: ProjectUpdate[] = [
-    {
-      id: '1',
-      date: 'Oct 2025',
-      title: 'Water Infrastructure Milestone',
-      description: 'Successfully installed 10 water pumps across remote villages, providing clean water access to over 2,000 community members.',
-      datePublished: '2025-10-15T10:00:00Z'
-    },
-    {
-      id: '2',
-      date: 'Sep 2025',
-      title: 'Community Training Program',
-      description: 'Completed comprehensive training sessions for 50 local technicians on pump maintenance and water quality testing procedures.',
-      datePublished: '2025-09-20T14:30:00Z'
-    },
-    {
-      id: '3',
-      date: 'Aug 2025',
-      title: 'Solar Panel Installation',
-      description: 'Installed solar-powered systems for 8 water pumps, ensuring sustainable and environmentally friendly operation in off-grid areas.',
-      datePublished: '2025-08-10T09:15:00Z'
-    }
-  ];
-
   // IntersectionObserver for fade-in animation
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -68,6 +43,31 @@ const StatusUpdatesSection: React.FC<StatusUpdatesSectionProps> = ({ projectId }
 
   // Fetch updates from API (placeholder implementation)
   useEffect(() => {
+    // Placeholder data - will be replaced with API call
+    const placeholderUpdates: ProjectUpdate[] = [
+      {
+        id: '1',
+        date: 'Oct 2025',
+        title: 'Water Infrastructure Milestone',
+        description: 'Successfully installed 10 water pumps across remote villages, providing clean water access to over 2,000 community members.',
+        datePublished: '2025-10-15T10:00:00Z'
+      },
+      {
+        id: '2',
+        date: 'Sep 2025',
+        title: 'Community Training Program',
+        description: 'Completed comprehensive training sessions for 50 local technicians on pump maintenance and water quality testing procedures.',
+        datePublished: '2025-09-20T14:30:00Z'
+      },
+      {
+        id: '3',
+        date: 'Aug 2025',
+        title: 'Solar Panel Installation',
+        description: 'Installed solar-powered systems for 8 water pumps, ensuring sustainable and environmentally friendly operation in off-grid areas.',
+        datePublished: '2025-08-10T09:15:00Z'
+      }
+    ];
+
     const fetchUpdates = async () => {
       try {
         if (projectId) {
@@ -91,14 +91,7 @@ const StatusUpdatesSection: React.FC<StatusUpdatesSectionProps> = ({ projectId }
     fetchUpdates();
   }, [projectId]);
 
-  const formatDate = (dateString: string): string => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
-  };
+
 
   return (
     <section 

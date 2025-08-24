@@ -1,13 +1,13 @@
 "use client"
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import leaflet from 'leaflet'
 // Interactive Map Component (defined separately to avoid type issues)
 const InteractiveMap: React.FC = () => {
 
-  // Import react-leaflet components and leaflet
-  const { MapContainer, TileLayer, Marker, Popup } = require('react-leaflet');
-  const L = require('leaflet');
+
+  const L = leaflet;
 
   // Custom marker icons based on status
   const createCustomIcon = (status: ProjectLocation['status']) => {
@@ -256,7 +256,7 @@ const WorldMapSection: React.FC = () => {
             Our Global Impact
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover the communities we're supporting worldwide. Click on any marker to learn more about our ongoing projects and their impact.
+            Discover the communities we&apos;re supporting worldwide. Click on any marker to learn more about our ongoing projects and their impact.
           </p>
         </div>
 

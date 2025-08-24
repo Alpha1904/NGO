@@ -16,40 +16,40 @@ const ImpactPerAmountSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Placeholder data - will be replaced with CMS data
-  const placeholderData: ImpactItem[] = [
-    {
-      id: 1,
-      amount: '$10',
-      description: '5 nutritious meals',
-      icon: '/images/meal-icon.svg',
-      altText: 'Nutritious meal icon'
-    },
-    {
-      id: 2,
-      amount: '$25',
-      description: 'School supplies for one child',
-      icon: '/images/school-icon.svg',
-      altText: 'School supplies icon'
-    },
-    {
-      id: 3,
-      amount: '$50',
-      description: 'Clean water for a family',
-      icon: '/images/water-icon.svg',
-      altText: 'Clean water icon'
-    },
-    {
-      id: 4,
-      amount: '$100',
-      description: 'Emergency medical kit',
-      icon: '/images/medical-icon.svg',
-      altText: 'Medical kit icon'
-    }
-  ];
-
   // Fetch data from Strapi CMS
   useEffect(() => {
+    // Placeholder data - will be replaced with CMS data
+    const placeholderData: ImpactItem[] = [
+      {
+        id: 1,
+        amount: '$10',
+        description: '5 nutritious meals',
+        icon: '/images/meal-icon.svg',
+        altText: 'Nutritious meal icon'
+      },
+      {
+        id: 2,
+        amount: '$25',
+        description: 'School supplies for one child',
+        icon: '/images/school-icon.svg',
+        altText: 'School supplies icon'
+      },
+      {
+        id: 3,
+        amount: '$50',
+        description: 'Clean water for a family',
+        icon: '/images/water-icon.svg',
+        altText: 'Clean water icon'
+      },
+      {
+        id: 4,
+        amount: '$100',
+        description: 'Emergency medical kit',
+        icon: '/images/medical-icon.svg',
+        altText: 'Medical kit icon'
+      }
+    ];
+
     const fetchImpactData = async () => {
       try {
         // TODO: Replace with actual Strapi endpoint
@@ -73,6 +73,7 @@ const ImpactPerAmountSection: React.FC = () => {
 
   // Intersection Observer for fade-in animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -87,13 +88,13 @@ const ImpactPerAmountSection: React.FC = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -140,7 +141,7 @@ const ImpactPerAmountSection: React.FC = () => {
               What Your Donation Achieves
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Every donation makes a real difference in people's lives. See the direct impact of your contribution.
+              Every donation makes a real difference in people&lsquo;s lives. See the direct impact of your contribution.
             </p>
           </div>
 

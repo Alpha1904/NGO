@@ -13,7 +13,7 @@ interface MissionData {
 }
 
 const MissionSummarySection: React.FC = () => {
-  const [missionData, setMissionData] = useState<MissionData>({
+  const [missionData] = useState<MissionData>({
     headline: 'Our Mission',
     description: 'We empower communities worldwide through humanitarian aid, focusing on sustainable development and crisis relief.',
     imageUrl: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',

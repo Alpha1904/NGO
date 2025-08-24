@@ -19,72 +19,72 @@ const ProjectListSection: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Placeholder project data (later to be fetched from Strapi CMS)
-  const placeholderProjects: Project[] = [
-    {
-      id: '1',
-      title: 'Clean Water Initiative',
-      description: 'Providing safe drinking water to rural communities in East Africa. Our comprehensive program includes well construction, water purification systems, and community education on hygiene practices.',
-      status: 'Active',
-      imageUrl: 'https://images.unsplash.com/photo-1541919329513-35f7af297129?w=800&h=600&fit=crop&auto=format',
-      imageAlt: 'Children collecting clean water from a newly installed well in a rural African village',
-      location: 'Kenya',
-      startDate: '2024-01-15'
-    },
-    {
-      id: '2',
-      title: 'Emergency Food Relief',
-      description: 'Delivering nutritious meals and food supplies to families affected by natural disasters. We work with local partners to ensure culturally appropriate and sustainable food distribution programs.',
-      status: 'Urgent',
-      imageUrl: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&h=600&fit=crop&auto=format',
-      imageAlt: 'Volunteers distributing food packages to families in need during emergency relief operation',
-      location: 'Philippines',
-      startDate: '2024-03-01'
-    },
-    {
-      id: '3',
-      title: 'Education for All',
-      description: 'Building schools and training teachers in underserved communities across South America. This initiative focuses on providing quality primary education and educational resources to children in remote areas.',
-      status: 'Active',
-      imageUrl: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=800&h=600&fit=crop&auto=format',
-      imageAlt: 'Children in a newly built classroom studying with educational materials and books',
-      location: 'Peru',
-      startDate: '2023-09-10'
-    },
-    {
-      id: '4',
-      title: 'Healthcare Access Program',
-      description: 'Establishing mobile medical clinics to reach remote communities without healthcare access. Our medical teams provide essential healthcare services, vaccinations, and health education programs.',
-      status: 'Completed',
-      imageUrl: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop&auto=format',
-      imageAlt: 'Medical professionals providing healthcare services in a mobile clinic to rural community members',
-      location: 'Bangladesh',
-      startDate: '2023-05-20'
-    },
-    {
-      id: '5',
-      title: 'Refugee Shelter Construction',
-      description: 'Building temporary and permanent housing solutions for displaced families fleeing conflict zones. We provide safe, dignified shelter while supporting community integration and self-reliance programs.',
-      status: 'Urgent',
-      imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&auto=format',
-      imageAlt: 'Construction of temporary housing structures for refugee families with volunteers working together',
-      location: 'Jordan',
-      startDate: '2024-02-12'
-    },
-    {
-      id: '6',
-      title: 'Sustainable Agriculture Training',
-      description: 'Teaching climate-resilient farming techniques to rural communities affected by drought and climate change. Our program includes seed distribution, irrigation training, and market access support.',
-      status: 'Active',
-      imageUrl: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop&auto=format',
-      imageAlt: 'Farmers learning sustainable agriculture techniques in a training demonstration field',
-      location: 'Ethiopia',
-      startDate: '2023-11-08'
-    }
-  ];
-
   // Simulate data loading (replace with actual API call to Strapi CMS)
   useEffect(() => {
+    // Placeholder project data (later to be fetched from Strapi CMS)
+    const placeholderProjects: Project[] = [
+      {
+        id: '1',
+        title: 'Clean Water Initiative',
+        description: 'Providing safe drinking water to rural communities in East Africa. Our comprehensive program includes well construction, water purification systems, and community education on hygiene practices.',
+        status: 'Active',
+        imageUrl: 'https://images.unsplash.com/photo-1541919329513-35f7af297129?w=800&h=600&fit=crop&auto=format',
+        imageAlt: 'Children collecting clean water from a newly installed well in a rural African village',
+        location: 'Kenya',
+        startDate: '2024-01-15'
+      },
+      {
+        id: '2',
+        title: 'Emergency Food Relief',
+        description: 'Delivering nutritious meals and food supplies to families affected by natural disasters. We work with local partners to ensure culturally appropriate and sustainable food distribution programs.',
+        status: 'Urgent',
+        imageUrl: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&h=600&fit=crop&auto=format',
+        imageAlt: 'Volunteers distributing food packages to families in need during emergency relief operation',
+        location: 'Philippines',
+        startDate: '2024-03-01'
+      },
+      {
+        id: '3',
+        title: 'Education for All',
+        description: 'Building schools and training teachers in underserved communities across South America. This initiative focuses on providing quality primary education and educational resources to children in remote areas.',
+        status: 'Active',
+        imageUrl: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=800&h=600&fit=crop&auto=format',
+        imageAlt: 'Children in a newly built classroom studying with educational materials and books',
+        location: 'Peru',
+        startDate: '2023-09-10'
+      },
+      {
+        id: '4',
+        title: 'Healthcare Access Program',
+        description: 'Establishing mobile medical clinics to reach remote communities without healthcare access. Our medical teams provide essential healthcare services, vaccinations, and health education programs.',
+        status: 'Completed',
+        imageUrl: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop&auto=format',
+        imageAlt: 'Medical professionals providing healthcare services in a mobile clinic to rural community members',
+        location: 'Bangladesh',
+        startDate: '2023-05-20'
+      },
+      {
+        id: '5',
+        title: 'Refugee Shelter Construction',
+        description: 'Building temporary and permanent housing solutions for displaced families fleeing conflict zones. We provide safe, dignified shelter while supporting community integration and self-reliance programs.',
+        status: 'Urgent',
+        imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&auto=format',
+        imageAlt: 'Construction of temporary housing structures for refugee families with volunteers working together',
+        location: 'Jordan',
+        startDate: '2024-02-12'
+      },
+      {
+        id: '6',
+        title: 'Sustainable Agriculture Training',
+        description: 'Teaching climate-resilient farming techniques to rural communities affected by drought and climate change. Our program includes seed distribution, irrigation training, and market access support.',
+        status: 'Active',
+        imageUrl: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop&auto=format',
+        imageAlt: 'Farmers learning sustainable agriculture techniques in a training demonstration field',
+        location: 'Ethiopia',
+        startDate: '2023-11-08'
+      }
+    ];
+
     const fetchProjects = async () => {
       try {
         setIsLoading(true);

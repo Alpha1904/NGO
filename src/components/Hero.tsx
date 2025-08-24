@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -24,12 +25,15 @@ const HeroSection = () => {
   }, [heroImages.length]);
 
   const scrollToDonation = () => {
-    const donationSection = document.getElementById('donation-form');
-    if (donationSection) {
-      donationSection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // Fallback: scroll to a position if section doesn't exist
-      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+    // Only run on client side
+    if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+      const donationSection = document.getElementById('donation-form');
+      if (donationSection) {
+        donationSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Fallback: scroll to a position if section doesn't exist
+        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+      }
     }
   };
 
@@ -72,11 +76,13 @@ const HeroSection = () => {
         )}
         
         {/* Fallback image if both video sources fail */}
-        <img 
+        <Image 
           src={heroImages[0]} 
           alt="Humanitarian aid work in communities"
-          className={`absolute inset-0 w-full h-full object-cover ${videoError ? 'hidden' : 'opacity-0'}`}
+          fill
+          className={`object-cover ${videoError ? 'hidden' : 'opacity-0'}`}
           onError={() => setVideoError(true)}
+          priority
         />
       </div>
 
@@ -89,11 +95,12 @@ const HeroSection = () => {
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <img
+            <Image
               src={image}
               alt={`Humanitarian aid work scene ${index + 1}`}
-              className="w-full h-full object-cover"
-              loading={index === 0 ? 'eager' : 'lazy'}
+              fill
+              className="object-cover"
+              priority={index === 0}
             />
           </div>
         ))}

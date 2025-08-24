@@ -10,7 +10,7 @@ interface ContactHeroData {
 }
 
 const ContactHeroSection: React.FC = () => {
-  const [heroData, setHeroData] = useState<ContactHeroData>({
+  const [heroData] = useState<ContactHeroData>({
     headline: 'Get in Touch',
     paragraph: "We're here to answer your questions and collaborate for global impact.",
     backgroundImage: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80'
@@ -20,6 +20,7 @@ const ContactHeroSection: React.FC = () => {
 
   // Intersection Observer for fade-in animation
   useEffect(() => {
+    const currentRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -32,13 +33,13 @@ const ContactHeroSection: React.FC = () => {
       }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -67,7 +68,7 @@ const ContactHeroSection: React.FC = () => {
     "@type": "ContactPage",
     "name": "Contact Us",
     "description": heroData.paragraph,
-    "url": typeof window !== 'undefined' ? window.location.href : '',
+    "url": "https://your-site.com/contact",
     "mainEntity": {
       "@type": "Organization",
       "name": "Humanitarian NGO",
